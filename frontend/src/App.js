@@ -1,4 +1,5 @@
 import './App.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -6,15 +7,15 @@ import Home from './screens/HomeScreen';
 
 function App() {
   return (
-    <div className="app">
+    <Router>
       <Header />
       <main className="py-3">
         <Container>
-          <Home />
+          <Route path="/" component={Home} exact />
         </Container>
       </main>
       <Footer />
-    </div>
+    </Router>
   );
 }
 
