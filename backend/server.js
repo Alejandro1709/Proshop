@@ -1,10 +1,10 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
-import products from './data/products.js';
 import connectToDB from './config/db.js';
+import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import colors from 'colors';
-
+import productRoutes from './routes/products.js';
 const app = express();
 
 dotenv.config();
@@ -19,15 +19,11 @@ app.get('/', (req, res) => {
   res.send('Hello');
 });
 
-app.get('/api/v1/products', (req, res) => {
-  res.status(200).json(products);
-});
+app.use('/api/v1/products', productRoutes);
 
-app.get('/api/v1/products/:id', (req, res) => {
-  const product = products.find(p => p._id === req.params.id);
+app.use(notFound);
 
-  res.status(200).json(product);
-});
+app.use(errorHandler);
 
 const port = process.env.PORT || 5000;
 
