@@ -1,6 +1,15 @@
-const express = require('express');
-const products = require('./data/products');
+import express from 'express';
+import dotenv from 'dotenv';
+import morgan from 'morgan';
+import products from './data/products.js';
+
 const app = express();
+
+dotenv.config();
+
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
 
 app.get('/', (req, res) => {
   res.send('Hello');
@@ -16,4 +25,8 @@ app.get('/api/v1/products/:id', (req, res) => {
   res.status(200).json(product);
 });
 
-app.listen(5000, () => console.log('Server is running on port: 5000'));
+const port = process.env.PORT || 5000;
+
+app.listen(port, () =>
+  console.log(`Server is running in ${process.env.NODE_ENV} on port: ${port}`)
+);
