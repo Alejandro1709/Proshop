@@ -10,7 +10,7 @@ import {
   Card,
   ListGroup
 } from 'react-bootstrap';
-import { addToCart } from '../actions/cartActions';
+import { addToCart, removeFromCart } from '../actions/cartActions';
 import Message from '../components/Message';
 
 function CartScreen({ match, location, history }) {
@@ -29,7 +29,9 @@ function CartScreen({ match, location, history }) {
     }
   }, [dispatch, productId, qty]);
 
-  const removeFromCartHandler = id => {};
+  const removeFromCartHandler = id => {
+    dispatch(removeFromCart(productId));
+  };
 
   const checkoutHandler = () => {
     history.push('login?redirect=shipping');
