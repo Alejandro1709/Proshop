@@ -17,7 +17,4 @@ const getProductById = asyncHandler(async (req, res) => {
   }
 });
 
-exports = {
-  getProducts,
-  getProductById
-};
+export { getProducts, getProductById };
