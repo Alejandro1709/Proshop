@@ -6,6 +6,7 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import productRoutes from './routes/products.js';
 import colors from 'colors';
 import userRoutes from './routes/users.js';
+import orderRoutes from './routes/orders.js';
 const app = express();
 
 dotenv.config();
@@ -20,6 +21,7 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/orders', orderRoutes);
 
 app.use(notFound);
 
