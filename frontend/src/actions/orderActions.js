@@ -100,7 +100,7 @@ export const payOrder = (orderId, paymentResult) => async (
       }
     };
 
-    const { data } = await axios.get(
+    const { data } = await axios.put(
       `/api/orders/${orderId}/pay`,
       paymentResult,
       config
@@ -111,12 +111,16 @@ export const payOrder = (orderId, paymentResult) => async (
       payload: data
     });
   } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    if (message === 'Not authorized, token failed') {
+      //dispatch(logout());
+    }
     dispatch({
       type: ORDER_PAY_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message
+      payload: message
     });
   }
 };
