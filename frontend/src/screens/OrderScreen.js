@@ -16,14 +16,14 @@ function OrderScreen({ match }) {
 
   const dispatch = useDispatch();
 
-  const orderDetails = useSelector(state => state.orderDetails);
+  const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;
 
-  const orderPay = useSelector(state => state.orderPay);
+  const orderPay = useSelector((state) => state.orderPay);
   const { loading: loadingPay, success: successPay } = orderPay;
 
   if (!loading) {
-    const addDecimals = num => {
+    const addDecimals = (num) => {
       return (Math.round(num * 100) / 100).toFixed(2);
     };
 
@@ -61,7 +61,7 @@ function OrderScreen({ match }) {
     // }
   }, [order, orderId, dispatch, successPay]);
 
-  const successPaymentHandler = paymentResult => {
+  const successPaymentHandler = (paymentResult) => {
     dispatch(payOrder(orderId, paymentResult));
   };
 
@@ -106,7 +106,7 @@ function OrderScreen({ match }) {
                 {order.paymentMethod}
               </p>
               {order.isPaid ? (
-                <Message variant="success">Paid on: {order.paidAt}</Message>
+                <Message variant="success">Paid on {order.paidAt}</Message>
               ) : (
                 <Message variant="danger">Not Paid</Message>
               )}

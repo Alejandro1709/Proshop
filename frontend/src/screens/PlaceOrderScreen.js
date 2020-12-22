@@ -9,9 +9,9 @@ import { createOrder } from '../actions/orderActions';
 function PlaceOrderScreen({ history }) {
   const dispatch = useDispatch();
 
-  const cart = useSelector(state => state.cart);
+  const cart = useSelector((state) => state.cart);
 
-  const addDecimals = num => {
+  const addDecimals = (num) => {
     return (Math.round(num * 100) / 100).toFixed(2);
   };
 
@@ -27,7 +27,7 @@ function PlaceOrderScreen({ history }) {
     Number(cart.taxPrice)
   ).toFixed(2);
 
-  const orderCreate = useSelector(state => state.orderCreate);
+  const orderCreate = useSelector((state) => state.orderCreate);
   const { order, success, error } = orderCreate;
 
   useEffect(() => {
@@ -45,7 +45,7 @@ function PlaceOrderScreen({ history }) {
         itemsPrice: cart.itemsPrice,
         shippingPrice: cart.shippingPrice,
         taxPrice: cart.taxPrice,
-        totalPrice: cart.totalPrice
+        totalPrice: cart.totalPrice,
       })
     );
   };

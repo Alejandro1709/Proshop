@@ -8,7 +8,7 @@ import {
   Form,
   Button,
   Card,
-  ListGroup
+  ListGroup,
 } from 'react-bootstrap';
 import { addToCart, removeFromCart } from '../actions/cartActions';
 import Message from '../components/Message';
@@ -20,7 +20,7 @@ function CartScreen({ match, location, history }) {
 
   const dispatch = useDispatch();
 
-  const cart = useSelector(state => state.cart);
+  const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
   useEffect(() => {
@@ -29,7 +29,7 @@ function CartScreen({ match, location, history }) {
     }
   }, [dispatch, productId, qty]);
 
-  const removeFromCartHandler = id => {
+  const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id));
   };
 
@@ -47,7 +47,7 @@ function CartScreen({ match, location, history }) {
           </Message>
         ) : (
           <ListGroup variant="flush">
-            {cartItems.map(item => (
+            {cartItems.map((item) => (
               <ListGroup.Item key={item.product}>
                 <Row>
                   <Col md={2}>
@@ -61,13 +61,13 @@ function CartScreen({ match, location, history }) {
                     <Form.Control
                       as="select"
                       value={item.qty}
-                      onChange={e =>
+                      onChange={(e) =>
                         dispatch(
                           addToCart(item.product, Number(e.target.value))
                         )
                       }
                     >
-                      {[...Array(item.countInStock).keys()].map(x => (
+                      {[...Array(item.countInStock).keys()].map((x) => (
                         <option key={x + 1} value={x + 1}>
                           {x + 1}
                         </option>
