@@ -34,7 +34,7 @@ function PlaceOrderScreen({ history }) {
     if (success) {
       history.push(`/orders/${order._id}`);
     }
-  }, [history, success]);
+  }, [history, success, order]);
 
   const placeOrderHandler = () => {
     dispatch(
@@ -55,7 +55,7 @@ function PlaceOrderScreen({ history }) {
       <CheckoutSteps step1 step2 step3 step4 />
       <Row>
         <Col md={8}>
-          <ListGroup variant="flush">
+          <ListGroup variant='flush'>
             <ListGroup.Item>
               <h2>Shipping</h2>
               <p>
@@ -77,7 +77,7 @@ function PlaceOrderScreen({ history }) {
               {cart.cartItems.length === 0 ? (
                 <Message>Your cart is empty</Message>
               ) : (
-                <ListGroup variant="flush">
+                <ListGroup variant='flush'>
                   {cart.cartItems.map((item, index) => (
                     <ListGroup.Item key={index}>
                       <Row>
@@ -107,7 +107,7 @@ function PlaceOrderScreen({ history }) {
         </Col>
         <Col md={4}>
           <Card>
-            <ListGroup variant="flush">
+            <ListGroup variant='flush'>
               <ListGroup.Item>
                 <h2>Order Summary</h2>
               </ListGroup.Item>
@@ -141,13 +141,13 @@ function PlaceOrderScreen({ history }) {
               </ListGroup.Item>
 
               <ListGroup.Item>
-                {error && <Message variant="danger">{error}</Message>}
+                {error && <Message variant='danger'>{error}</Message>}
               </ListGroup.Item>
 
               <ListGroup.Item>
                 <Button
-                  type="button"
-                  className="btn-block"
+                  type='button'
+                  className='btn-block'
                   disabled={cart.cartItems === 0}
                   onClick={placeOrderHandler}
                 >
